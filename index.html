@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PTI One Class | Portofolio Kelas</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#0F4C81;
+  --secondary:#2563EB;
+  --bg:#F8FAFC;
+  --card:#FFFFFF;
+  --text:#0F172A;
+  --muted:#64748B;
+  --border:#E5E7EB;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(15,23,42,.08);
+}
+body.dark{
+  --bg:#0B1220;
+  --card:#111827;
+  --text:#F9FAFB;
+  --muted:#9CA3AF;
+  --border:#1F2937;
+  --shadow:0 18px 40px rgba(0,0,0,.45);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Inter,system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+}
+a{text-decoration:none;color:inherit}
+
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+body.dark header{background:rgba(11,18,32,.9)}
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:18px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo{
+  font-family:Poppins;
+  font-size:22px;
+  font-weight:700;
+  color:var(--primary);
+}
+.nav-menu{
+  display:flex;
+  gap:28px;
+  align-items:center;
+}
+.nav-menu a{
+  font-size:14px;
+  color:var(--muted);
+  font-weight:500;
+}
+.nav-menu a:hover{color:var(--primary)}
+.toggle{
+  padding:6px 16px;
+  border-radius:999px;
+  background:var(--card);
+  border:1px solid var(--border);
+  cursor:pointer;
+  font-size:12px;
+}
+
+.hero{
+  max-width:1200px;
+  margin:100px auto 80px;
+  padding:0 24px;
+}
+.hero h1{
+  font-family:Poppins;
+  font-size:clamp(36px,5vw,52px);
+  margin-bottom:18px;
+}
+.hero p{
+  max-width:720px;
+  font-size:16px;
+  color:var(--muted);
+}
+.hero-actions{
+  margin-top:36px;
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:14px 36px;
+  border-radius:999px;
+  font-weight:600;
+  font-size:14px;
+  transition:.25s;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;
+}
+.btn-primary:hover{opacity:.9}
+.btn-outline{
+  border:1px solid var(--border);
+  background:var(--card);
+}
+.btn-outline:hover{
+  border-color:var(--primary);
+  color:var(--primary);
+}
+
+section{
+  max-width:1200px;
+  margin:120px auto;
+  padding:0 24px;
+}
+.section-title{
+  margin-bottom:60px;
+}
+.section-title h2{
+  font-family:Poppins;
+  font-size:34px;
+  margin-bottom:12px;
+}
+.section-title p{
+  color:var(--muted);
+  font-size:15px;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:26px;
+}
+.gallery img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  transition:.35s;
+}
+.gallery img:hover{transform:translateY(-6px)}
+
+.news-card{
+  background:var(--card);
+  padding:32px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  margin-bottom:20px;
+}
+.news-card h4{
+  font-family:Poppins;
+  color:var(--primary);
+}
+.news-card span{
+  font-size:12px;
+  color:var(--muted);
+}
+.news-card table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:14px;
+}
+.news-card th,
+.news-card td{
+  border:1px solid var(--border);
+  padding:8px;
+  text-align:center;
+}
+.news-card th{
+  background:var(--primary);
+  color:#fff;
+}
+
+#adminForm{
+  display:none;
+  margin-top:30px;
+  background:var(--card);
+  padding:24px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+#adminForm input,
+#adminForm select{
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  border-radius:8px;
+  border:1px solid var(--border);
+}
+#adminForm button{
+  padding:10px 20px;
+  border:none;
+  background:var(--primary);
+  color:#fff;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.members{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:28px;
+}
+.member{
+  background:var(--card);
+  padding:28px;
+  border-radius:var(--radius);
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+.avatar{
+  width:84px;height:84px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#93C5FD,#2563EB);
+  margin:0 auto 16px;
+}
+
+footer{
+  margin-top:160px;
+  padding:60px 24px;
+  border-top:1px solid var(--border);
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+}
+
+#modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  justify-content:center;
+  align-items:center;
+  z-index:200;
+  flex-direction:column;
+}
+#modal img{
+  max-width:90%;
+  max-height:80%;
+  border-radius:16px;
+}
+#close{
+  position:absolute;
+  top:20px;right:40px;
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+}
+
+.toast{
+  position:fixed;
+  bottom:20px;right:20px;
+  background:var(--primary);
+  color:#fff;
+  padding:12px 20px;
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
+  animation:fade 4s forwards;
+}
+@keyframes fade{
+  0%{opacity:0}10%{opacity:1}
+  90%{opacity:1}100%{opacity:0}
+}
+
+@media(max-width:700px){
+  .nav-menu a{display:none}
+  .hero-actions{flex-direction:column}
+  .btn{width:100%;text-align:center}
+}
+
+/* ===== TAMBAHAN FITUR (TIDAK SENTUH KODE LAMA) ===== */
+.badge{padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600;display:inline-block;margin-top:6px}
+.ketua{background:#2563EB;color:#fff}
+.sekretaris{background:#059669;color:#fff}
+.bendahara{background:#D97706;color:#fff}
+.anggota{background:#64748B;color:#fff}
+.controls{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.controls input,.controls select{padding:8px;border-radius:8px;border:1px solid var(--border)}
+.member img{width:84px;height:84px;border-radius:50%;object-fit:cover;margin-bottom:12px}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">PTI One Class</div>
+    <div class="nav-menu">
+      <a href="#galeri">Galeri</a>
+      <a href="#jadwal">Jadwal</a>
+      <a href="#anggota">Anggota</a>
+      <div class="toggle" onclick="toggleDark()">Dark</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>PTI One Class</h1>
+  <p>Website portofolio publik kelas Pendidikan Teknologi Informasi yang menampilkan dokumentasi kegiatan dan jadwal kuliah interaktif.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="#galeri">Lihat Galeri</a>
+    <a class="btn btn-outline" href="#jadwal">Jadwal Kuliah</a>
+  </div>
+</section>
+
+<section id="galeri">
+  <div class="section-title">
+    <h2>Galeri Kegiatan</h2>
+    <p>Dokumentasi aktivitas kelas</p>
+  </div>
+  <div class="gallery" id="gallery"></div>
+</section>
+
+<section id="jadwal">
+  <div class="section-title">
+    <h2>Jadwal Kuliah</h2>
+    <p>Informasi jadwal terbaru</p>
+  </div>
+  <div id="jadwalContainer"></div>
+
+  <div id="adminForm">
+    <h4>Tambah Jadwal</h4>
+    <input id="mataKuliah" placeholder="Mata Kuliah">
+    <select id="hari">
+      <option>Senin</option><option>Selasa</option>
+      <option>Rabu</option><option>Kamis</option><option>Jumat</option>
+    </select>
+    <input id="jam" placeholder="08:00 - 10:00">
+    <input id="ruang" placeholder="Ruang">
+    <input id="tanggalMulai" type="date">
+    <button onclick="tambahJadwal()">Simpan</button>
+  </div>
+</section>
+
+<section id="anggota">
+  <div class="section-title">
+    <h2>Struktur Kelas</h2>
+    <p id="jumlahAnggota"></p>
+  </div>
+
+  <div class="controls">
+    <input id="search" placeholder="Cari nama">
+    <select id="sort">
+      <option value="">Urutkan Jabatan</option>
+      <option value="Ketua Kelas">Ketua</option>
+      <option value="Sekretaris">Sekretaris</option>
+      <option value="Bendahara">Bendahara</option>
+      <option value="Anggota">Anggota</option>
+    </select>
+  </div>
+
+  <div class="members" id="members"></div>
+</section>
+
+<footer>
+  © 2026 PTI One Class<br>
+  Pendidikan Teknologi Informasi
+</footer>
+
+<div id="modal">
+  <span id="close">&times;</span>
+  <img id="modal-img">
+</div>
+
+<script>
+function toggleDark(){
+  document.body.classList.toggle('dark');
+  localStorage.setItem('dark',document.body.classList.contains('dark'));
+}
+if(localStorage.getItem('dark')==="true") document.body.classList.add('dark');
+
+const gallery=document.getElementById('gallery');
+[1,2,3,4].forEach(i=>{
+  const img=document.createElement('img');
+  img.src=`img/${i}.jpeg`;
+  img.onclick=()=>openModal(img.src);
+  gallery.appendChild(img);
+});
+
+const modal=document.getElementById('modal');
+const modalImg=document.getElementById('modal-img');
+document.getElementById('close').onclick=()=>modal.style.display='none';
+function openModal(src){modal.style.display='flex';modalImg.src=src;}
+
+let jadwal=JSON.parse(localStorage.getItem('jadwal'))||[];
+function renderJadwal(){
+  const box=document.getElementById('jadwalContainer');
+  box.innerHTML='';
+  jadwal.forEach(j=>{
+    box.innerHTML+=`
+    <div class="news-card">
+      <h4>${j.mataKuliah}</h4>
+      <span>Mulai ${j.mulai}</span>
+      <table>
+        <tr><th>Hari</th><th>Jam</th><th>Ruang</th></tr>
+        <tr><td>${j.hari}</td><td>${j.jam}</td><td>${j.ruang}</td></tr>
+      </table>
+    </div>`;
+  });
+}
+renderJadwal();
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='F1'){
+    e.preventDefault();
+    if(btoa(prompt("Password admin"))==="YWRtaW4xMjM="){
+      document.getElementById('adminForm').style.display='block';
+      toast("Admin aktif");
+    }
+  }
+});
+
+function tambahJadwal(){
+  jadwal.push({
+    mataKuliah:mataKuliah.value,
+    hari:hari.value,
+    jam:jam.value,
+    ruang:ruang.value,
+    mulai:tanggalMulai.value
+  });
+  localStorage.setItem('jadwal',JSON.stringify(jadwal));
+  renderJadwal();
+  toast("Jadwal ditambahkan");
+}
+
+function toast(msg){
+  const t=document.createElement('div');
+  t.className='toast';
+  t.innerText=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),4000);
+}
+/* ================= DATA ANGGOTA ================= */
+let anggota = [
+  {nama:"Nama Ketua",jabatan:"Ketua Kelas",foto:"img/ketua.jpg"},
+  {nama:"Julia",jabatan:"Sekretaris",foto:"img/sekretaris.jpg"},
+  {nama:"Regita Cahyani",jabatan:"Bendahara",foto:"img/bendahara.jpg"},
+  {nama:"Anggota 1",jabatan:"Anggota",foto:"img/a1.jpg"},
+  {nama:"Anggota 2",jabatan:"Anggota",foto:"img/a2.jpg"},
+  {nama:"Anggota 3",jabatan:"Anggota"},
+  {nama:"Anggota 4",jabatan:"Anggota"},
+  {nama:"Anggota 5",jabatan:"Anggota"},
+  {nama:"Anggota 6",jabatan:"Anggota"},
+  {nama:"Anggota 7",jabatan:"Anggota"},
+  {nama:"Anggota 8",jabatan:"Anggota"},
+  {nama:"Anggota 9",jabatan:"Anggota"},
+  {nama:"Anggota 10",jabatan:"Anggota"},
+  {nama:"Anggota 11",jabatan:"Anggota"},
+  {nama:"Anggota 12",jabatan:"Anggota"},
+  {nama:"Anggota 13",jabatan:"Anggota"},
+  {nama:"Anggota 14",jabatan:"Anggota"},
+  {nama:"Anggota 15",jabatan:"Anggota"},
+  {nama:"Anggota 16",jabatan:"Anggota"},
+  {nama:"Anggota 17",jabatan:"Anggota"},
+  {nama:"Anggota 18",jabatan:"Anggota"},
+  {nama:"Anggota 19",jabatan:"Anggota"}
+];
+
+/* ================= LOGIC ================= */
+function badgeClass(j){
+  if(j==="Ketua Kelas")return"ketua";
+  if(j==="Sekretaris")return"sekretaris";
+  if(j==="Bendahara")return"bendahara";
+  return"anggota";
+}
+
+function renderAnggota(data = anggota){
+  const box=document.getElementById("members");
+  box.innerHTML="";
+  data.forEach(a=>{
+    box.innerHTML+=`
+      <div class="member">
+        ${a.foto?`<img src="${a.foto}">`:`<div class="avatar"></div>`}
+        <h4>${a.nama}</h4>
+        <span class="badge ${badgeClass(a.jabatan)}">${a.jabatan}</span>
+      </div>
+    `;
+  });
+  document.getElementById("jumlahAnggota").innerText=
+    `Total Anggota: ${data.length}`;
+}
+
+document.getElementById("search").oninput=e=>{
+ const v=e.target.value.toLowerCase();
+ renderAnggota(anggota.filter(a=>a.nama.toLowerCase().includes(v)));
+};
+document.getElementById("sort").onchange=e=>{
+ const v=e.target.value;
+ if(!v) renderAnggota(); else renderAnggota(anggota.filter(a=>a.jabatan===v));
+};
+renderAnggota();
+</script>
+
+</body>
+</html>
