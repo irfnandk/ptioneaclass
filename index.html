@@ -446,35 +446,37 @@ function toast(msg){
 }
 /* ================= DATA ANGGOTA ================= */
 let anggota = [
-  {nama:"Nama Ketua",jabatan:"Ketua Kelas",foto:"img/ketua.jpg"},
+  {nama:"M. IMAM ALI MURTADO",jabatan:"Ketua Kelas",foto:"img/ketua.jpg"},
+  {nama:"BILLY NATHAEL WAHYU PRASTYA",jabatan:"Wakil Ketua",foto:"img/ketua.jpg"},
   {nama:"Julia",jabatan:"Sekretaris",foto:"img/sekretaris.jpg"},
   {nama:"Regita Cahyani",jabatan:"Bendahara",foto:"img/bendahara.jpg"},
-  {nama:"Anggota 1",jabatan:"Anggota",foto:"img/a1.jpg"},
-  {nama:"Anggota 2",jabatan:"Anggota",foto:"img/a2.jpg"},
-  {nama:"Anggota 3",jabatan:"Anggota"},
-  {nama:"Anggota 4",jabatan:"Anggota"},
-  {nama:"Anggota 5",jabatan:"Anggota"},
-  {nama:"Anggota 6",jabatan:"Anggota"},
-  {nama:"Anggota 7",jabatan:"Anggota"},
-  {nama:"Anggota 8",jabatan:"Anggota"},
-  {nama:"Anggota 9",jabatan:"Anggota"},
-  {nama:"Anggota 10",jabatan:"Anggota"},
-  {nama:"Anggota 11",jabatan:"Anggota"},
-  {nama:"Anggota 12",jabatan:"Anggota"},
-  {nama:"Anggota 13",jabatan:"Anggota"},
-  {nama:"Anggota 14",jabatan:"Anggota"},
-  {nama:"Anggota 15",jabatan:"Anggota"},
-  {nama:"Anggota 16",jabatan:"Anggota"},
-  {nama:"Anggota 17",jabatan:"Anggota"},
-  {nama:"Anggota 18",jabatan:"Anggota"},
-  {nama:"Anggota 19",jabatan:"Anggota"}
+  {nama:"Ulya",jabatan:"Wakil Bendahara",foto:"img/sekretaris.jpg"},
+  {nama:"MUHAMAD WISNU",jabatan:"Anggota",foto:"img/a1.jpg"},
+  {nama:"USWATUN CHASANAH",jabatan:"Anggota",foto:"img/a2.jpg"},
+  {nama:"MIFTAHUL QOIR TRI OKTAVIAN",jabatan:"Anggota"},
+  {nama:"ACHMAD ROZAQ IBRAHIM",jabatan:"Anggota"},
+  {nama:"PUTRI TITIANIAN SASILIA",jabatan:"Anggota"},
+  {nama:"JIBRIL MUHAMAD RIZKI",jabatan:"Anggota"},
+  {nama:"AQBIL ABDILLAH FAZA",jabatan:"Anggota"},
+  {nama:"ROSSI VALENTINO",jabatan:"Anggota"},
+  {nama:"IRFAN ANDIKA PRATAMA",jabatan:"Anggota"},
+  {nama:"LUNA AGUSTIN",jabatan:"Anggota"},
+  {nama:"ANINDYA ESA WAHYUVIDA RAMNDANI",jabatan:"Anggota"},
+  {nama:"SATRIA BAGUS PUTRA HERMAWAN",jabatan:"Anggota"},
+  {nama:"LISA RAHMA AULIA PUTRI ",jabatan:"Anggota"},
+  {nama:"MOKHMAD AGUS ALFAIZUN",jabatan:"Anggota"},
+  {nama:"OLIF AGUSTINA",jabatan:"Anggota"},
+  {nama:"WIANDA PRADITA SEPTIANA ",jabatan:"Anggota"},
+  {nama:"DWI PRASETYO",jabatan:"Anggota"}
 ];
 
 /* ================= LOGIC ================= */
 function badgeClass(j){
   if(j==="Ketua Kelas")return"ketua";
+  if(j=="Wakil Ketua")return"ketua";
   if(j==="Sekretaris")return"sekretaris";
   if(j==="Bendahara")return"bendahara";
+  if(j=="Wakil Bendahara")return"bendahara";
   return"anggota";
 }
 
@@ -507,4 +509,3 @@ renderAnggota();
 
 </body>
 </html>
-
