@@ -6,6 +6,7 @@
 <title>PTI One Class | Portofolio Kelas</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 :root{
@@ -25,877 +26,271 @@ body.dark{
   --text:#F9FAFB;
   --muted:#9CA3AF;
   --border:#1F2937;
-  --shadow:0 18px 40px rgba(0,0,0,.45);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:Inter,system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.7;
-}
+body{font-family:Inter;background:var(--bg);color:var(--text);line-height:1.6}
 a{text-decoration:none;color:inherit}
+header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--border);z-index:100}
+body.dark header{background:#111}
+.nav{max-width:1200px;margin:auto;padding:18px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:Poppins;font-weight:700;color:var(--primary)}
+.nav-menu{display:flex;gap:20px;align-items:center}
+.nav-menu a{font-size:14px;color:var(--muted);cursor:pointer}
+.toggle{padding:6px 12px;border:1px solid var(--border);border-radius:999px;cursor:pointer}
 
-header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(255,255,255,.85);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);
-}
-body.dark header{background:rgba(11,18,32,.9)}
-.nav{
-  max-width:1200px;
-  margin:auto;
-  padding:18px 24px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.logo{
-  font-family:Poppins;
-  font-size:22px;
-  font-weight:700;
-  color:var(--primary);
-}
-.nav-menu{
-  display:flex;
-  gap:28px;
-  align-items:center;
-}
-.nav-menu a{
-  font-size:14px;
-  color:var(--muted);
-  font-weight:500;
-}
-.nav-menu a:hover{color:var(--primary)}
-.toggle{
-  padding:6px 16px;
-  border-radius:999px;
-  background:var(--card);
-  border:1px solid var(--border);
-  cursor:pointer;
-  font-size:12px;
-}
+section{max-width:1200px;margin:80px auto;padding:0 20px}
+.section-title{margin-bottom:40px}
+.section-title h2{font-family:Poppins;font-size:28px}
 
-.hero{
-  max-width:1200px;
-  margin:100px auto 80px;
-  padding:0 24px;
-}
-.hero h1{
-  font-family:Poppins;
-  font-size:clamp(36px,5vw,52px);
-  margin-bottom:18px;
-}
-.hero p{
-  max-width:720px;
-  font-size:16px;
-  color:var(--muted);
-}
-.hero-actions{
-  margin-top:36px;
-  display:flex;
-  gap:18px;
-  flex-wrap:wrap;
-}
-.btn{
-  padding:14px 36px;
-  border-radius:999px;
-  font-weight:600;
-  font-size:14px;
-  transition:.25s;
-}
-.btn-primary{
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  color:#fff;
-}
-.btn-primary:hover{opacity:.9}
-.btn-outline{
-  border:1px solid var(--border);
-  background:var(--card);
-}
-.btn-outline:hover{
-  border-color:var(--primary);
-  color:var(--primary);
-}
+.hero{margin-top:100px}
+.btn{padding:10px 20px;border-radius:999px;font-size:14px;cursor:pointer}
+.btn-primary{background:var(--primary);color:white;border:none}
+.news-card{background:var(--card);padding:20px;border-radius:16px;margin-bottom:20px;border:1px solid var(--border)}
+.members{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.member{background:var(--card);padding:20px;border-radius:16px;text-align:center;border:1px solid var(--border)}
+.badge{padding:4px 8px;border-radius:999px;font-size:11px;color:#fff}
+.ketua{background:#2563EB}
+.sekretaris{background:#059669}
+.bendahara{background:#D97706}
+.anggota{background:#64748B}
+footer{text-align:center;padding:40px;border-top:1px solid var(--border);margin-top:100px}
 
-section{
-  max-width:1200px;
-  margin:120px auto;
-  padding:0 24px;
-}
-.section-title{
-  margin-bottom:60px;
-}
-.section-title h2{
-  font-family:Poppins;
-  font-size:34px;
-  margin-bottom:12px;
-}
-.section-title p{
-  color:var(--muted);
-  font-size:15px;
-}
-
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:26px;
-}
-.gallery img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  cursor:pointer;
-  transition:.35s;
-}
-.gallery img:hover{transform:translateY(-6px)}
-
-.news-card{
-  background:var(--card);
-  padding:32px;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  margin-bottom:20px;
-}
-.news-card h4{
-  font-family:Poppins;
-  color:var(--primary);
-}
-.news-card span{
-  font-size:12px;
-  color:var(--muted);
-}
-.news-card table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:14px;
-}
-.news-card th,
-.news-card td{
-  border:1px solid var(--border);
-  padding:8px;
-  text-align:center;
-}
-.news-card th{
-  background:var(--primary);
-  color:#fff;
-}
-
-#adminForm{
-  display:none;
-  margin-top:30px;
-  background:var(--card);
-  padding:24px;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-}
-#adminForm input,
-#adminForm select{
-  width:100%;
-  padding:10px;
-  margin:6px 0;
-  border-radius:8px;
-  border:1px solid var(--border);
-}
-#adminForm button{
-  padding:10px 20px;
-  border:none;
-  background:var(--primary);
-  color:#fff;
-  border-radius:12px;
-  cursor:pointer;
-}
-
-.members{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:28px;
-}
-.member{
-  background:var(--card);
-  padding:28px;
-  border-radius:var(--radius);
-  text-align:center;
-  box-shadow:var(--shadow);
-}
-.avatar{
-  width:84px;height:84px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#93C5FD,#2563EB);
-  margin:0 auto 16px;
-}
-
-footer{
-  margin-top:160px;
-  padding:60px 24px;
-  border-top:1px solid var(--border);
-  text-align:center;
-  font-size:13px;
-  color:var(--muted);
-}
-
-#modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.9);
-  justify-content:center;
-  align-items:center;
-  z-index:200;
-  flex-direction:column;
-}
-#modal img{
-  max-width:90%;
-  max-height:80%;
-  border-radius:16px;
-}
-#close{
-  position:absolute;
-  top:20px;right:40px;
-  font-size:40px;
-  color:white;
-  cursor:pointer;
-}
-
-.toast{
-  position:fixed;
-  bottom:20px;right:20px;
-  background:var(--primary);
-  color:#fff;
-  padding:12px 20px;
-  border-radius:12px;
-  box-shadow:0 5px 15px rgba(0,0,0,.3);
-  animation:fade 4s forwards;
-}
-@keyframes fade{
-  0%{opacity:0}10%{opacity:1}
-  90%{opacity:1}100%{opacity:0}
-}
-
-@media(max-width:700px){
-  .nav-menu a{display:none}
-  .hero-actions{flex-direction:column}
-  .btn{width:100%;text-align:center}
-}
-
-/* ===== TAMBAHAN FITUR (TIDAK SENTUH KODE LAMA) ===== */
-.badge{padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600;display:inline-block;margin-top:6px}
-.ketua{background:#2563EB;color:#fff}
-.sekretaris{background:#059669;color:#fff}
-.bendahara{background:#D97706;color:#fff}
-.anggota{background:#64748B;color:#fff}
-.controls{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.controls input,.controls select{padding:8px;border-radius:8px;border:1px solid var(--border)}
-.member img{width:84px;height:84px;border-radius:50%;object-fit:cover;margin-bottom:12px}
-
-/* ===== TAMBAHAN STYLE BIODATA ===== */
-#biodataModal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  z-index:999;
-  justify-content:center;
-  align-items:center;
-}
-#biodataBox{
-  background:var(--card);
-  width:92%;
-  max-width:420px;
-  border-radius:20px;
-  padding:28px;
-  position:relative;
-  box-shadow:var(--shadow);
-}
-#biodataBox img{
-  width:96px;
-  height:96px;
-  border-radius:50%;
-  object-fit:cover;
-}
-#biodataClose{
-  position:absolute;
-  top:14px;
-  right:18px;
-  font-size:26px;
-  cursor:pointer;
-}
-.social a{
-  display:inline-block;
-  margin-right:10px;
-  margin-top:10px;
-  font-size:14px;
-}
+#dashboard{display:none}
+input,select{width:100%;padding:8px;margin:6px 0;border-radius:8px;border:1px solid var(--border)}
+button{cursor:pointer}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="nav">
-    <div class="logo">PTI One Class</div>
-    <div class="nav-menu">
-      <a href="#galeri">Galeri</a>
-      <a href="#jadwal">Jadwal</a>
-      <a href="#anggota">Anggota</a>
-      <div class="toggle" onclick="toggleDark()">Dark</div>
-    </div>
-  </div>
+<div class="nav">
+<div class="logo">PTI One Class</div>
+<div class="nav-menu" id="navMenu">
+<a href="#anggota">Anggota</a>
+<a onclick="openLogin()">Login</a>
+<div class="toggle" onclick="toggleDark()">Dark</div>
+</div>
+</div>
 </header>
 
 <section class="hero">
-  <h1>PTI One Class</h1>
-  <p>Website portofolio publik kelas Pendidikan Teknologi Informasi yang menampilkan dokumentasi kegiatan dan jadwal kuliah interaktif.</p>
-  <div class="hero-actions">
-    <a class="btn btn-primary" href="#galeri">Lihat Galeri</a>
-    <a class="btn btn-outline" href="#jadwal">Jadwal Kuliah</a>
-    <a class="btn btn-outline" href="#anggota">Struktur Kelas</a>
-  </div>
-</section>
-
-<section id="galeri">
-  <div class="section-title">
-    <h2>Galeri Kegiatan</h2>
-    <p>Dokumentasi aktivitas kelas</p>
-  </div>
-  <div class="gallery" id="gallery"></div>
-</section>
-
-<section id="jadwal">
-  <div class="section-title">
-    <h2>Jadwal Kuliah</h2>
-    <p>Informasi jadwal terbaru</p>
-  </div>
-  <div id="jadwalContainer"></div>
-
-  <div id="adminForm">
-    <h4>Tambah Jadwal</h4>
-    <input id="mataKuliah" placeholder="Mata Kuliah">
-    <select id="hari">
-      <option>Senin</option><option>Selasa</option>
-      <option>Rabu</option><option>Kamis</option><option>Jumat</option>
-    </select>
-    <input id="jam" placeholder="08:00 - 10:00">
-    <input id="ruang" placeholder="Ruang">
-    <input id="tanggalMulai" type="date">
-    <button onclick="tambahJadwal()">Simpan</button>
-  </div>
+<h1>Website Resmi PTI One Class</h1>
+<p>Portofolio kelas dengan sistem dashboard keuangan modern.</p>
 </section>
 
 <section id="anggota">
-  <div class="section-title">
-    <h2>Struktur Kelas</h2>
-    <p id="jumlahAnggota"></p>
-  </div>
-
-  <div class="controls">
-    <input id="search" placeholder="Cari nama">
-    <select id="sort">
-      <option value="">Urutkan Jabatan</option>
-      <option value="Ketua Kelas">Ketua</option>
-      <option value="Sekretaris">Sekretaris</option>
-      <option value="Bendahara">Bendahara</option>
-      <option value="Anggota">Anggota</option>
-    </select>
-  </div>
-
-  <div class="members" id="members"></div>
+<div class="section-title">
+<h2>Struktur Kelas</h2>
+<p id="jumlahAnggota"></p>
+</div>
+<div class="members" id="members"></div>
 </section>
 
-<footer>
-  © 2026 PTI One Class<br>
-  Pendidikan Teknologi Informasi
-</footer>
-
-<div id="modal">
-  <span id="close">&times;</span>
-  <img id="modal-img">
+<section id="dashboard">
+<div class="section-title">
+<h2>Dashboard Keuangan</h2>
+<button onclick="logout()" style="background:#ef4444;color:white;border:none;padding:6px 12px;border-radius:8px">Logout</button>
 </div>
 
-<!-- ================== MODAL BIODATA (TAMBAHAN) ================== -->
-<div id="biodataModal">
-  <div id="biodataBox">
-    <span id="biodataClose" onclick="closeBiodata()">&times;</span>
-    <div id="biodataContent"></div>
-  </div>
+<div class="news-card">
+<h4>Total Saldo</h4>
+<h2 id="totalKas">Rp 0</h2>
+</div>
+
+<div class="news-card">
+<h4>Tambah Transaksi</h4>
+<input id="namaTransaksi" placeholder="Nama">
+<select id="jenisTransaksi">
+<option value="masuk">Kas Masuk</option>
+<option value="keluar">Kas Keluar</option>
+</select>
+<input id="jumlahTransaksi" type="number" placeholder="Jumlah">
+<button onclick="tambahKas()" class="btn btn-primary">Simpan</button>
+</div>
+
+<div class="news-card">
+<h4>Riwayat</h4>
+<div id="riwayatKas"></div>
+</div>
+
+<div class="news-card">
+<h4>Grafik Kas</h4>
+<canvas id="grafikKas"></canvas>
+</div>
+
+<div class="news-card">
+<h4>Status Iuran</h4>
+<div id="listIuran"></div>
+<button onclick="exportCSV()" class="btn btn-primary">Export CSV</button>
+</div>
+
+<div class="news-card">
+<h4>Statistik</h4>
+<canvas id="pieChart"></canvas>
+</div>
+</section>
+
+<footer>© 2026 PTI One Class</footer>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);justify-content:center;align-items:center">
+<div style="background:white;padding:30px;border-radius:16px;width:90%;max-width:400px">
+<h3>Login</h3>
+<input id="loginUser" placeholder="Username">
+<input id="loginPass" type="password" placeholder="Password">
+<button onclick="login()" class="btn btn-primary" style="width:100%">Login</button>
+</div>
 </div>
 
 <script>
+/* DARK MODE */
 function toggleDark(){
-  document.body.classList.toggle('dark');
-  localStorage.setItem('dark',document.body.classList.contains('dark'));
+document.body.classList.toggle('dark');
+localStorage.setItem('dark',document.body.classList.contains('dark'));
 }
 if(localStorage.getItem('dark')==="true") document.body.classList.add('dark');
 
-const gallery=document.getElementById('gallery');
-[1,2,3,4].forEach(i=>{
-  const img=document.createElement('img');
-  img.src=`img/${i}.jpeg`;
-  img.onclick=()=>openModal(img.src);
-  gallery.appendChild(img);
-});
-
-const modal=document.getElementById('modal');
-const modalImg=document.getElementById('modal-img');
-document.getElementById('close').onclick=()=>modal.style.display='none';
-function openModal(src){modal.style.display='flex';modalImg.src=src;}
-
-let jadwal=JSON.parse(localStorage.getItem('jadwal'))||[];
-function renderJadwal(){
-  const box=document.getElementById('jadwalContainer');
-  box.innerHTML='';
-  jadwal.forEach(j=>{
-    box.innerHTML+=`
-    <div class="news-card">
-      <h4>${j.mataKuliah}</h4>
-      <span>Mulai ${j.mulai}</span>
-      <table>
-        <tr><th>Hari</th><th>Jam</th><th>Ruang</th></tr>
-        <tr><td>${j.hari}</td><td>${j.jam}</td><td>${j.ruang}</td></tr>
-      </table>
-    </div>`;
-  });
-}
-renderJadwal();
-
-document.addEventListener('keydown',e=>{
-  if(e.key==='F1'){
-    e.preventDefault();
-    if(btoa(prompt("Password admin"))==="YWRtaW4xMjM="){
-      document.getElementById('adminForm').style.display='block';
-      toast("Admin aktif");
-    }
-  }
-});
-
-function tambahJadwal(){
-  jadwal.push({
-    mataKuliah:mataKuliah.value,
-    hari:hari.value,
-    jam:jam.value,
-    ruang:ruang.value,
-    mulai:tanggalMulai.value
-  });
-  localStorage.setItem('jadwal',JSON.stringify(jadwal));
-  renderJadwal();
-  toast("Jadwal ditambahkan");
-}
-
-function toast(msg){
-  const t=document.createElement('div');
-  t.className='toast';
-  t.innerText=msg;
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),4000);
-}
-/* ================= DATA ANGGOTA ================= */
-let anggota = [
-  {
-    nama:"M. IMAM ALI MURTADO",
-    jabatan:"Ketua Kelas",
-    foto:"img/ketua.jpg",
-    biodata:{
-      ttl:"Surabaya, 15 Januari 2006",
-      alamat:"Surabaya",
-      hobi:"Olahraga, Musik",
-      motto:"Kepemimpinan dimulai dari diri sendiri"
-    },
-    sosial:{
-      instagram:"https://instagram.com/imamali",
-      whatsapp:"https://wa.me/628123456789",
-      github:"https://github.com/imamali"
-    }
-  },
-  {
-    nama:"BILLY NATHAEL WAHYU PRASTYA",
-    jabatan:"Wakil Ketua",
-    foto:"img/ketua.jpg",
-    biodata:{
-      ttl:"Malang, 20 Februari 2006",
-      alamat:"Malang",
-      hobi:"Fotografi, Traveling",
-      motto:"Bersama kita lebih kuat"
-    },
-    sosial:{
-      instagram:"https://instagram.com/billyprastya",
-      whatsapp:"https://wa.me/628987654321",
-      github:"https://github.com/billyprastya"
-    }
-  },
-  {
-    nama:"Julia",
-    jabatan:"Sekretaris",
-    foto:"img/sekretaris.jpg",
-    biodata:{
-      ttl:"Jakarta, 10 Maret 2006",
-      alamat:"Jakarta",
-      hobi:"Membaca, Menulis",
-      motto:"Disiplin adalah kunci kesuksesan"
-    },
-    sosial:{
-      instagram:"https://instagram.com/julia_sekretaris",
-      whatsapp:"https://wa.me/628112233445",
-      github:"https://github.com/julia"
-    }
-  },
-  {
-    nama:"Regita Cahyani",
-    jabatan:"Bendahara",
-    foto:"img/bendahara.jpg",
-    biodata:{
-      ttl:"Bandung, 5 April 2006",
-      alamat:"Bandung",
-      hobi:"Kuliner, Musik",
-      motto:"Keuangan yang baik membangun masa depan"
-    },
-    sosial:{
-      instagram:"https://instagram.com/regitacahyani",
-      whatsapp:"https://wa.me/628556677889",
-      github:"https://github.com/regita"
-    }
-  },
-  {
-    nama:"Ulya",
-    jabatan:"Wakil Bendahara",
-    foto:"img/sekretaris.jpg",
-    biodata:{
-      ttl:"Semarang, 12 Mei 2006",
-      alamat:"Semarang",
-      hobi:"Olahraga, Membaca",
-      motto:"Kerja keras membuahkan hasil"
-    },
-    sosial:{
-      instagram:"https://instagram.com/ulya_wbendahara",
-      whatsapp:"https://wa.me/628778899001",
-      github:"https://github.com/ulya"
-    }
-  },
-  {
-    nama:"MUHAMAD WISNU",
-    jabatan:"Anggota",
-    foto:"img/a1.jpg",
-    biodata:{
-      ttl:"Yogyakarta, 18 Juni 2006",
-      alamat:"Yogyakarta",
-      hobi:"Gaming, Coding",
-      motto:"Belajar dari kesalahan"
-    },
-    sosial:{
-      instagram:"https://instagram.com/wisnu_muhammad",
-      whatsapp:"https://wa.me/628990011223",
-      github:"https://github.com/wisnu"
-    }
-  },
-    {
-    nama:"USWATUN CHASANAH",
-    jabatan:"Anggota",
-    foto:"img/a2.jpg",
-    biodata:{
-      ttl:"Tuban, 22 Juli 2006",
-      alamat:"Tuban",
-      hobi:"Memasak, Membaca",
-      motto:"Kesabaran adalah kekuatan"
-    },
-    sosial:{
-      instagram:"https://instagram.com/uswatun",
-      whatsapp:"https://wa.me/628334455667",
-      github:"https://github.com/uswatun"
-    }
-  },
-  {
-    nama:"MIFTAHUL QOIR TRI OKTAVIAN",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Lamongan, 30 Agustus 2006",
-      alamat:"Lamongan",
-      hobi:"Desain Grafis",
-      motto:"Kreativitas tanpa batas"
-    },
-    sosial:{
-      instagram:"https://instagram.com/miftahulqoir",
-      whatsapp:"https://wa.me/628221133445",
-      github:"https://github.com/miftahulqoir"
-    }
-  },
-  {
-    nama:"ACHMAD ROZAQ IBRAHIM",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Gresik, 14 September 2006",
-      alamat:"Gresik",
-      hobi:"Sepak Bola",
-      motto:"Kerja tim adalah segalanya"
-    },
-    sosial:{
-      instagram:"https://instagram.com/rozaqibrahim",
-      whatsapp:"https://wa.me/628776655443",
-      github:"https://github.com/rozaq"
-    }
-  },
-  {
-    nama:"PUTRI TITIANIAN SASILIA",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Sidoarjo, 2 Oktober 2006",
-      alamat:"Sidoarjo",
-      hobi:"Menari, Musik",
-      motto:"Percaya diri itu penting"
-    },
-    sosial:{
-      instagram:"https://instagram.com/putrititianian",
-      whatsapp:"https://wa.me/628889900112",
-      github:"https://github.com/putrititianian"
-    }
-  },
-  {
-    nama:"JIBRIL MUHAMAD RIZKI",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Bojonegoro, 11 November 2006",
-      alamat:"Bojonegoro",
-      hobi:"Videografi",
-      motto:"Abadikan setiap momen"
-    },
-    sosial:{
-      instagram:"https://instagram.com/jibrilrizki",
-      whatsapp:"https://wa.me/628771122334",
-      github:"https://github.com/jibril"
-    }
-  },
-  {
-    nama:"AQBIL ABDILLAH FAZA",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Nganjuk, 25 Desember 2006",
-      alamat:"Nganjuk",
-      hobi:"Editing Video",
-      motto:"Detail menentukan kualitas"
-    },
-    sosial:{
-      instagram:"https://instagram.com/aqbilfaza",
-      whatsapp:"https://wa.me/628665544332",
-      github:"https://github.com/aqbil"
-    }
-  },
-  {
-    nama:"ROSSI VALENTINO",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Kediri, 8 Januari 2007",
-      alamat:"Kediri",
-      hobi:"Fotografi",
-      motto:"Sudut pandang menentukan hasil"
-    },
-    sosial:{
-      instagram:"https://instagram.com/rossivalentino",
-      whatsapp:"https://wa.me/628443322110",
-      github:"https://github.com/rossi"
-    }
-  },
-  {
-    nama:"IRFAN ANDIKA PRATAMA",
-    jabatan:"Anggota",
-    foto:"img/a1.jpg",
-    biodata:{
-      ttl:"Bojonegoro, 3 April 2007",
-      alamat:"Bojonegoro",
-      hobi:"Coding, Desain",
-      motto:"Belajar hari ini, sukses esok hari"
-    },
-    sosial:{
-      instagram:"https://instagram.com/irfanandika",
-      whatsapp:"https://wa.me/628123456789",
-      github:"https://github.com/irfanandika"
-    }
-  },
-  {
-    nama:"LUNA AGUSTIN",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Madiun, 19 Mei 2007",
-      alamat:"Madiun",
-      hobi:"Menulis",
-      motto:"Kata-kata adalah kekuatan"
-    },
-    sosial:{
-      instagram:"https://instagram.com/lunaagustin",
-      whatsapp:"https://wa.me/628991122334",
-      github:"https://github.com/luna"
-    }
-  },
-  {
-    nama:"ANINDYA ESA WAHYUVIDA RAMNDANI",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Ngawi, 27 Juni 2007",
-      alamat:"Ngawi",
-      hobi:"Public Speaking",
-      motto:"Berani tampil itu penting"
-    },
-    sosial:{
-      instagram:"https://instagram.com/anindyaesa",
-      whatsapp:"https://wa.me/628881234567",
-      github:"https://github.com/anindya"
-    }
-  },
-  {
-    nama:"SATRIA BAGUS PUTRA HERMAWAN",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Blora, 9 Juli 2007",
-      alamat:"Blora",
-      hobi:"Olahraga",
-      motto:"Tubuh sehat, pikiran kuat"
-    },
-    sosial:{
-      instagram:"https://instagram.com/satriabagus",
-      whatsapp:"https://wa.me/628772211009",
-      github:"https://github.com/satria"
-    }
-  },
-  {
-    nama:"LISA RAHMA AULIA PUTRI",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Cepu, 16 Agustus 2007",
-      alamat:"Cepu",
-      hobi:"Make Up",
-      motto:"Percaya diri adalah kecantikan sejati"
-    },
-    sosial:{
-      instagram:"https://instagram.com/lisarahma",
-      whatsapp:"https://wa.me/628667788990",
-      github:"https://github.com/lisa"
-    }
-  },
-  {
-    nama:"MOKHMAD AGUS ALFAIZUN",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Rembang, 4 September 2007",
-      alamat:"Rembang",
-      hobi:"Otomotif",
-      motto:"Mesin mengajarkan ketelitian"
-    },
-    sosial:{
-      instagram:"https://instagram.com/agusfaizun",
-      whatsapp:"https://wa.me/628445566778",
-      github:"https://github.com/agus"
-    }
-  },
-  {
-    nama:"OLIF AGUSTINA",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Pati, 21 Oktober 2007",
-      alamat:"Pati",
-      hobi:"Menonton Film",
-      motto:"Cerita memberi makna"
-    },
-    sosial:{
-      instagram:"https://instagram.com/olifagustina",
-      whatsapp:"https://wa.me/628991100223",
-      github:"https://github.com/olif"
-    }
-  },
-  {
-    nama:"WIANDA PRADITA SEPTIANA",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Jepara, 6 November 2007",
-      alamat:"Jepara",
-      hobi:"Kerajinan",
-      motto:"Ketekunan menghasilkan keindahan"
-    },
-    sosial:{
-      instagram:"https://instagram.com/wiandapradita",
-      whatsapp:"https://wa.me/628776688990",
-      github:"https://github.com/wianda"
-    }
-  },
-  {
-    nama:"DWI PRASETYO",
-    jabatan:"Anggota",
-    biodata:{
-      ttl:"Bojonegoro, 13 Desember 2007",
-      alamat:"Bojonegoro",
-      hobi:"Teknologi",
-      motto:"Teknologi untuk masa depan"
-    },
-    sosial:{
-      instagram:"https://instagram.com/dwiprasetyo",
-      whatsapp:"https://wa.me/628112299887",
-      github:"https://github.com/dwi"
-    }
-  }
+/* DATA ANGGOTA */
+let anggota=[
+{nama:"IMAM",jabatan:"Ketua Kelas"},
+{nama:"BILLY",jabatan:"Wakil Ketua"},
+{nama:"JULIA",jabatan:"Sekretaris"},
+{nama:"REGITA",jabatan:"Bendahara"},
+{nama:"ANGGOTA 1",jabatan:"Anggota"},
+{nama:"ANGGOTA 2",jabatan:"Anggota"}
 ];
 
-
-/* ================= LOGIC ================= */
 function badgeClass(j){
-  if(j==="Ketua Kelas")return"ketua";
-  if(j=="Wakil Ketua")return"ketua";
-  if(j==="Sekretaris")return"sekretaris";
-  if(j==="Bendahara")return"bendahara";
-  if(j=="Wakil Bendahara")return"bendahara";
-  return"anggota";
+if(j.includes("Ketua")) return "ketua";
+if(j==="Sekretaris") return "sekretaris";
+if(j==="Bendahara") return "bendahara";
+return "anggota";
 }
 
-function renderAnggota(data = anggota){
-  const box=document.getElementById("members");
-  box.innerHTML="";
-  data.forEach(a=>{
-    box.innerHTML+=`
-      <div class="member">
-        ${a.foto?`<img src="${a.foto}" onclick='openBiodata(${JSON.stringify(a)})'>`
-        :`<div class="avatar" onclick='openBiodata(${JSON.stringify(a)})'></div>`}
-        <h4>${a.nama}</h4>
-        <span class="badge ${badgeClass(a.jabatan)}">${a.jabatan}</span>
-      </div>
-    `;
-  });
-  document.getElementById("jumlahAnggota").innerText = `Total Anggota: ${data.length}`;
+function renderAnggota(){
+let box=document.getElementById("members");
+box.innerHTML="";
+anggota.forEach(a=>{
+box.innerHTML+=`
+<div class="member">
+<h4>${a.nama}</h4>
+<span class="badge ${badgeClass(a.jabatan)}">${a.jabatan}</span>
+</div>`;
+});
+document.getElementById("jumlahAnggota").innerText="Total: "+anggota.length;
 }
-
-document.getElementById("search").oninput=e=>{
- const v=e.target.value.toLowerCase();
- renderAnggota(anggota.filter(a=>a.nama.toLowerCase().includes(v)));
-};
-document.getElementById("sort").onchange=e=>{
- const v=e.target.value;
- if(!v) renderAnggota(); else renderAnggota(anggota.filter(a=>a.jabatan===v));
-};
 renderAnggota();
 
-/* ================= BIODATA MODAL ================= */
-function openBiodata(a){
-  const box=document.getElementById("biodataContent");
-  box.innerHTML=`
-    <center>
-      ${a.foto?`<img src="${a.foto}">`:`<div class="avatar"></div>`}
-      <h3>${a.nama}</h3>
-      <span class="badge ${badgeClass(a.jabatan)}">${a.jabatan}</span>
-    </center>
-    <hr>
-    ${a.biodata?`
-      <p><b>TTL:</b> ${a.biodata.ttl}</p>
-      <p><b>Alamat:</b> ${a.biodata.alamat}</p>
-      <p><b>Hobi:</b> ${a.biodata.hobi}</p>
-      <p><i>"${a.biodata.motto}"</i></p>`:`<p>Biodata belum tersedia</p>`}
-    ${a.sosial?`
-      <div class="social">
-        ${a.sosial.instagram?`<a href="${a.sosial.instagram}" target="_blank">Instagram</a>`:``}
-        ${a.sosial.whatsapp?`<a href="${a.sosial.whatsapp}" target="_blank">WhatsApp</a>`:``}
-      </div>`:``}
-  `;
-  document.getElementById("biodataModal").style.display="flex";
+/* LOGIN SYSTEM */
+let users=[
+{username:"admin",password:"ptiadmin",role:"admin"},
+{username:"viewer",password:"ptiuser",role:"viewer"}
+];
+let currentUser=JSON.parse(localStorage.getItem("ptiUser"))||null;
+
+function openLogin(){document.getElementById("loginModal").style.display="flex";}
+function login(){
+let u=loginUser.value;
+let p=loginPass.value;
+let found=users.find(x=>x.username===u && x.password===p);
+if(found){
+currentUser=found;
+localStorage.setItem("ptiUser",JSON.stringify(found));
+document.getElementById("loginModal").style.display="none";
+checkAccess();
 }
-function closeBiodata(){
-  document.getElementById("biodataModal").style.display="none";
+}
+function logout(){
+localStorage.removeItem("ptiUser");
+location.reload();
+}
+function checkAccess(){
+document.getElementById("dashboard").style.display=currentUser?"block":"none";
+}
+checkAccess();
+
+/* KAS SYSTEM */
+let kas=JSON.parse(localStorage.getItem("kasPTI"))||[];
+function tambahKas(){
+kas.push({
+nama:namaTransaksi.value,
+jenis:jenisTransaksi.value,
+jumlah:parseInt(jumlahTransaksi.value),
+tanggal:new Date()
+});
+localStorage.setItem("kasPTI",JSON.stringify(kas));
+renderKas();
+}
+function renderKas(){
+let total=0;
+let box=document.getElementById("riwayatKas");
+box.innerHTML="";
+kas.forEach((k,i)=>{
+if(k.jenis==="masuk") total+=k.jumlah;
+else total-=k.jumlah;
+box.innerHTML+=`${k.nama} - ${k.jenis} - Rp ${k.jumlah}<br>`;
+});
+document.getElementById("totalKas").innerText="Rp "+total;
+renderChart();
+}
+function renderChart(){
+let bulan={};
+kas.forEach(k=>{
+let b=new Date(k.tanggal).getMonth();
+bulan[b]=(bulan[b]||0)+(k.jenis==="masuk"?k.jumlah:-k.jumlah);
+});
+let ctx=document.getElementById("grafikKas");
+if(window.barChart) window.barChart.destroy();
+window.barChart=new Chart(ctx,{
+type:"bar",
+data:{labels:Object.keys(bulan),datasets:[{label:"Kas",data:Object.values(bulan)}]}
+});
+}
+renderKas();
+
+/* IURAN */
+let iuran=JSON.parse(localStorage.getItem("iuran"))||{};
+let target=50000;
+function renderIuran(){
+let box=document.getElementById("listIuran");
+box.innerHTML="";
+anggota.forEach(a=>{
+if(!iuran[a.nama]) iuran[a.nama]=0;
+let status=iuran[a.nama]>=target?"LUNAS":"BELUM";
+box.innerHTML+=`${a.nama} - ${status} (Rp ${iuran[a.nama]})<br>`;
+});
+localStorage.setItem("iuran",JSON.stringify(iuran));
+renderPie();
+}
+renderIuran();
+
+function renderPie(){
+let lunas=0,belum=0;
+anggota.forEach(a=>{
+if(iuran[a.nama]>=target) lunas++; else belum++;
+});
+let ctx=document.getElementById("pieChart");
+if(window.pieChart) window.pieChart.destroy();
+window.pieChart=new Chart(ctx,{
+type:"pie",
+data:{labels:["Lunas","Belum"],datasets:[{data:[lunas,belum]}]}
+});
+}
+
+/* EXPORT CSV */
+function exportCSV(){
+let data="Nama,Bayar\n";
+anggota.forEach(a=>{
+data+=`${a.nama},${iuran[a.nama]||0}\n`;
+});
+let blob=new Blob([data],{type:"text/csv"});
+let link=document.createElement("a");
+link.href=URL.createObjectURL(blob);
+link.download="iuran_pti.csv";
+link.click();
 }
 </script>
+
 </body>
 </html>
